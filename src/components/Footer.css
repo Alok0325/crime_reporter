@@ -1,0 +1,63 @@
+/* Custom footer styles */
+.custom-bg {
+    background-color: #343a40;
+  }
+  
+  /* Ensuring the footer stays at the bottom */
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  #root {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  footer {
+    width: 100%;
+    margin-top: auto;
+  }
+  
+  .text-warning {
+    color: #ffc107 !important;
+  }
+  
+  footer a {
+    transition: color 0.3s ease-in-out;
+  }
+  
+  footer a:hover {
+    color: #ffc107;
+  }
+  
+  .footer-icons i {
+    margin-right: 10px;
+  }
+  
+  /* Footer bottom alignment */
+  footer .text-center {
+    text-align: center;
+  }
+  
+  footer .text-md-left {
+    text-align: left;
+  }
+  
+  footer .text-md-right {
+    text-align: right;
+  }
+  
+  footer p {
+    margin-bottom: 10px;
+  }
+  
+  /* For smaller screens */
+  @media (max-width: 768px) {
+    footer .text-md-left,
+    footer .text-md-right {
+      text-align: center;
+    }
+  }
+  

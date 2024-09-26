@@ -65,7 +65,7 @@ const RegisterComplain = () => {
 
   return (
     <>
-      <Navbar />
+      
 
       {/* Main Form Content */}
       <div className="container mt-5 mw-100">

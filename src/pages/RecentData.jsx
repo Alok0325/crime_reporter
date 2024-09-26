@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 
 function RecentData() {
   const [recentData, setRecentData] = useState([]);
@@ -20,7 +21,7 @@ function RecentData() {
   }, []); 
 
   
-  return (
+  return (<>
     <div>
       <h2>Recent Crime Reports</h2>
       {recentData.length > 0 ? (
@@ -37,6 +38,8 @@ function RecentData() {
         <p>No recent data available.</p>
       )}
     </div>
+    <Footer/>
+    </>
   );
 }
 
