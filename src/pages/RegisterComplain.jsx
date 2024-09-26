@@ -177,8 +177,9 @@ const RegisterComplain = () => {
 
       {/* Footer Outside of Container */}
       <div style={{ width: "100%" }}>
-        <Footer />
+       
       </div>
+      <Footer />
     </>
   );
 };
