@@ -1,46 +1,66 @@
-import React, { useState } from 'react';
-import Navbar from '../components/navbar';  
-import Footer from '../components/Footer';
+import React, { useState } from "react";
+import Navbar from "../components/navbar";
+import Footer from "../components/Footer";
+import axios from "axios";
 
 const RegisterComplain = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    location: '',
-    crime: '',
-    image: null  // For the image
+    name: "",
+    email: "",
+    phone: "",
+    location: "",
+    crime: "",
+    image: null, // For the image
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
   const handleImageChange = (e) => {
     setFormData({
       ...formData,
-      image: e.target.files[0]  // Get the selected file
+      image: e.target.files[0], // Get the selected file
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formDataToSubmit = new FormData();
-    formDataToSubmit.append('name', formData.name);
-    formDataToSubmit.append('email', formData.email);
-    formDataToSubmit.append('phone', formData.phone);
-    formDataToSubmit.append('location', formData.location);
-    formDataToSubmit.append('crime', formData.crime);
-    formDataToSubmit.append('image', formData.image);
+    formDataToSubmit.append("name", formData.name);
+    formDataToSubmit.append("email", formData.email);
+    formDataToSubmit.append("phone", formData.phone);
+    formDataToSubmit.append("location", formData.location);
+    formDataToSubmit.append("crime", formData.crime);
+    formDataToSubmit.append("image", formData.image);
 
-    console.log('Form Data:', formDataToSubmit);
-
-    alert('Form submitted successfully!');
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/crimeReport/create",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        location: "",
+        crime: "",
+        image: null, // Reset the image
+      });
+      alert("Case Registered!");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -53,7 +73,9 @@ const RegisterComplain = () => {
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           {/* Form Fields */}
           <div className="mb-3">
-            <label htmlFor="name" className="form-label">Name:</label>
+            <label htmlFor="name" className="form-label">
+              Name:
+            </label>
             <input
               type="text"
               name="name"
@@ -66,7 +88,9 @@ const RegisterComplain = () => {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">Email:</label>
+            <label htmlFor="email" className="form-label">
+              Email:
+            </label>
             <input
               type="email"
               name="email"
@@ -79,7 +103,9 @@ const RegisterComplain = () => {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="phone" className="form-label">Phone Number:</label>
+            <label htmlFor="phone" className="form-label">
+              Phone Number:
+            </label>
             <input
               type="tel"
               name="phone"
@@ -92,7 +118,9 @@ const RegisterComplain = () => {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="location" className="form-label">Location:</label>
+            <label htmlFor="location" className="form-label">
+              Location:
+            </label>
             <input
               type="text"
               name="location"
@@ -105,7 +133,9 @@ const RegisterComplain = () => {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="crime" className="form-label">Type of Crime:</label>
+            <label htmlFor="crime" className="form-label">
+              Type of Crime:
+            </label>
             <select
               name="crime"
               className="form-select"
@@ -124,7 +154,9 @@ const RegisterComplain = () => {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="image" className="form-label">Upload Evidence (Image):</label>
+            <label htmlFor="image" className="form-label">
+              Upload Evidence (Image):
+            </label>
             <input
               type="file"
               name="image"
@@ -135,14 +167,16 @@ const RegisterComplain = () => {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
         </form>
       </div>
 
       <br />
 
       {/* Footer Outside of Container */}
-      <div style={{ width: '100%' }}>
+      <div style={{ width: "100%" }}>
         <Footer />
       </div>
     </>
