@@ -4,7 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
-
+import { BrowserRouter,Route,Routes } from "react-router-dom";
+import { MapContainer } from "react-leaflet";
+import MapPage from "./MapPage";
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -99,8 +101,9 @@ function RecentData() {
             <p>Loading chart...</p>
           )}
         </div>
-
         {/* Button to navigate to the map page */}
+
+          
         <button onClick={goToMap}>View Crime Map</button>
       </div>
       <Footer />
